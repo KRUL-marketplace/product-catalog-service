@@ -1,1 +1,3 @@
-# product-catalog-service
+Собираем бэк:
+1. Запускаем скриптик build.sh , он создаст .env файл из .env.example, если у нас нет .env файла. Этот скрипт также скачает все нужные зависимости, сгенерирует proto файлы и т.д.
+2. После этого собираем docker контейнер (ubuntu - sudo docker compose up —build)

@@ -1,0 +1,386 @@
+syntax = "proto3";
+
+package product;
+
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+// Указание пути для сгенерированного кода на Go.
+option go_package = "github.com/KRUL-marketplace/krul_backend/internal/product_service;product_service";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Krul API"
+    version: "1.0.0"
+  };
+
+  host: "localhost:8080",
+  schemes: HTTP,
+  schemes: HTTPS,
+  consumes: "application/json",
+  produces: "application/json"
+};
+
+// Описание сервиса ProductCatalogService
+service ProductCatalogService {
+  // Создание нового продукта
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {
+    option (google.api.http) = {
+      post: "/v1/product", // HTTP POST запрос на /v1/product
+      body: "*" // Тело запроса - любой контент
+    };
+  }
+  // Обновление существующего продукта
+  rpc UpdateProduct(UpdateProductRequest) returns (CreateProductResponse) {
+    option (google.api.http) = {
+      put: "/v1/product/{id}", // HTTP PUT запрос на /v1/product/{id}
+      body: "*" // Тело запроса - любой контент
+    };
+  }
+  // Получение продукта по его идентификатору
+  rpc GetProductById(GetProductByIdRequest) returns (GetProductByIdResponse) {
+    option (google.api.http) = {
+      get: "/v1/product/{id}" // HTTP GET запрос на /v1/product/{id}
+    };
+  }
+  // Получение продукта по его slug
+  rpc GetProductBySlug(GetProductBySlugRequest) returns (GetProductBySlugResponse) {
+    option (google.api.http) = {
+      get: "/v1/product/by-slug/{slug}" // HTTP GET запрос на /v1/product/by-slug/{slug}
+    };
+  }
+  // Получение списка всех продуктов
+  rpc GetAllProducts(GetAllProductsRequest) returns (GetAllProductsResponse) {
+    option (google.api.http) = {
+      get: "/v1/products" // HTTP GET запрос на /v1/products
+    };
+  }
+  // Получения товара определенного бренда
+  rpc GetAllBrandProducts(GetAllBrandProductsRequest) returns (GetAllBrandProductsResponse) {
+    option (google.api.http) = {
+      get: "/v1/products/brand/{id}"
+    };
+  }
+  // Удаление продукта по его идентификатору
+  rpc DeleteProductById(DeleteProductByIdRequest) returns (DeleteProductByIdResponse) {
+    option (google.api.http) = {
+      delete: "/v1/product/{id}" // HTTP DELETE запрос на /v1/product/{id}
+    };
+  }
+  // Создание новой категории
+  rpc CreateCategory(CreateCategoryRequest) returns (CreateCategoryResponse) {
+    option (google.api.http) = {
+      post: "/v1/category", // HTTP POST запрос на /v1/category
+      body: "*" // Тело запроса - любой контент
+    };
+  }
+  // Обновление существующей категории
+  rpc UpdateCategory(UpdateCategoryRequest) returns (UpdateCategoryResponse) {
+    option (google.api.http) = {
+      put: "/v1/category/{id}", // HTTP PUT запрос на /v1/category/{id}
+      body: "*" // Тело запроса - любой контент
+    };
+  }
+  // Получение списка всех категорий
+  rpc GetAllCategories(GetAllCategoriesRequest) returns (GetAllCategoriesResponse) {
+    option (google.api.http) = {
+      get: "/v1/categories" // HTTP GET запрос на /v1/categories
+    };
+  }
+  // Получение категории по её идентификатору
+  rpc GetCategoryById(GetCategoryByIdRequest) returns (GetCategoryByIdResponse) {
+    option (google.api.http) = {
+      get: "/v1/category/{id}" // HTTP GET запрос на /v1/category/{id}
+    };
+  }
+  // Получение категории по её slug
+  rpc GetCategoryBySlug(GetCategoryBySlugRequest) returns (GetCategoryBySlugResponse) {
+    option (google.api.http) = {
+      get: "/v1/category/by-slug/{slug}" // HTTP GET запрос на /v1/category/by-slug/{slug}
+    };
+  }
+  // Удаление категории по её идентификатору
+  rpc DeleteCategoryById(DeleteCategoryByIdRequest) returns (DeleteCategoryByIdResponse) {
+    option (google.api.http) = {
+      delete: "/v1/category/{id}" // HTTP DELETE запрос на /v1/category/{id}
+    };
+  }
+  // Создание нового бренда
+  rpc CreateBrand(CreateBrandRequest) returns (CreateBrandResponse) {
+    option (google.api.http) = {
+      post: "/v1/brand", // HTTP POST запрос на /v1/brand
+      body: "*" // Тело запроса - любой контент
+    };
+  }
+  // Обновление существующего бренда
+  rpc UpdateBrand(UpdateBrandRequest) returns (UpdateBrandResponse) {
+    option (google.api.http) = {
+      put: "/v1/brand/{id}", // HTTP PUT запрос на /v1/brand/{id}
+      body: "*" // Тело запроса - любой контент
+    };
+  }
+  // Получение списка всех брендов
+  rpc GetAllBrands(GetAllBrandsRequest) returns (GetAllBrandsResponse) {
+    option (google.api.http) = {
+      get: "/v1/brands" // HTTP GET запрос на /v1/brands
+    };
+  }
+  // Получение бренда по его идентификатору
+  rpc GetBrandById(GetBrandByIdRequest) returns (GetBrandByIdResponse) {
+    option (google.api.http) = {
+      get: "/v1/brand/{id}" // HTTP GET запрос на /v1/brand/{id}
+    };
+  }
+  // Получение бренда по его slug
+  rpc GetBrandBySlug(GetBrandBySlugRequest) returns (GetBrandBySlugResponse) {
+    option (google.api.http) = {
+      get: "/v1/brand/by-slug/{slug}" // HTTP GET запрос на /v1/brand/by-slug/{slug}
+    };
+  }
+  // Удаление бренда по его идентификатору
+  rpc DeleteBrandById(DeleteBrandByIdRequest) returns (DeleteBrandByIdResponse) {
+    option (google.api.http) = {
+      delete: "/v1/brand/{id}" // HTTP DELETE запрос на /v1/brand/{id}
+    };
+  }
+}
+
+// Информация о продукте
+message ProductInfo {
+  string name = 1; // Наименование продукта
+  string slug = 2; // Уникальный идентификатор продукта
+  string description = 3; // Описание продукта
+  uint32 price = 4; // Цена продукта
+  repeated Category categories = 5; // Список категорий, к которым относится продукт
+  Brand brand = 6; // Бренд продукта
+}
+
+// Информация для создания нового продукта
+message CreateProductInfo {
+  string name = 1; // Наименование продукта
+  string slug = 2; // Уникальный идентификатор продукта
+  string description = 3; // Описание продукта
+  uint32 price = 4; // Цена продукта
+  repeated uint32 categories = 5; // Список идентификаторов категорий, к которым относится продукт
+  uint32 brandId = 6; // Идентификатор бренда продукта
+}
+
+// Продукт
+message Product {
+  string id = 1; // Идентификатор продукта
+  ProductInfo info = 2; // Информация о продукте
+  google.protobuf.Timestamp created_at = 3; // Время создания продукта
+  google.protobuf.Timestamp updated_at = 4; // Время последнего обновления продукта
+}
+
+// Запрос на создание нового продукта
+message CreateProductRequest {
+  CreateProductInfo info = 1; // Информация для создания нового продукта
+}
+
+// Ответ на запрос создания нового продукта
+message CreateProductResponse {
+  string id = 1; // Идентификатор созданного продукта
+}
+
+// Запрос на обновление информации о продукте
+message UpdateProductRequest {
+  string id = 1; // Идентификатор продукта
+  CreateProductInfo info = 2; // Информация для обновления продукта
+}
+
+// Запрос на получение продукта по его идентификатору
+message GetProductByIdRequest {
+  string id = 1; // Идентификатор продукта
+}
+
+// Ответ на запрос получения продукта по его идентификатору
+message GetProductByIdResponse {
+  Product product = 1; // Продукт
+}
+
+// Запрос на получение продукта по его slug
+message GetProductBySlugRequest {
+  string slug = 1; // Slug продукта
+}
+
+// Ответ на запрос получения продукта по его slug
+message GetProductBySlugResponse {
+  Product product = 1; // Продукт
+}
+
+// Запрос на получение списка всех продуктов
+message GetAllProductsRequest {}
+
+// Ответ на запрос получения списка всех продуктов
+message GetAllProductsResponse {
+  repeated Product product = 1; // Список продуктов
+}
+
+// Запрос на удаление продукта по его идентификатору
+message DeleteProductByIdRequest {
+  string id = 1; // Идентификатор продукта
+}
+
+// Ответ на запрос удаления продукта по его идентификатору
+message DeleteProductByIdResponse {
+  string message = 1; // Сообщение об успешном удалении продукта
+}
+
+// Информация для создания новой категории
+message CreateCategoryRequest {
+  CategoryInfo info = 1; // Информация для создания новой категории
+}
+
+// Ответ на запрос создания новой категории
+message CreateCategoryResponse {
+  uint32 id = 1; // Идентификатор созданной категории
+}
+
+// Запрос на обновление информации о категории
+message UpdateCategoryRequest {
+  uint32 id = 1; // Идентификатор категории
+  CategoryInfo info = 2; // Информация для обновления категории
+}
+
+// Ответ на запрос обновления информации о категории
+message UpdateCategoryResponse {
+  string message = 1; // Сообщение об успешном обновлении информации о категории
+}
+
+// Запрос на получение списка всех категорий
+message GetAllCategoriesRequest {}
+
+// Ответ на запрос получения списка всех категорий
+message GetAllCategoriesResponse {
+  repeated Category categories = 1; // Список категорий
+}
+
+// Запрос на получение категории по её идентификатору
+message GetCategoryByIdRequest {
+  uint32 id = 1; // Идентификатор категории
+}
+
+// Ответ на запрос получения категории по её идентификатору
+message GetCategoryByIdResponse {
+  Category category = 1; // Категория
+}
+
+// Запрос на получение категории по её slug
+message GetCategoryBySlugRequest {
+  string slug = 1; // Slug категории
+}
+
+// Ответ на запрос получения категории по её slug
+message GetCategoryBySlugResponse {
+  Category category = 1; // Категория
+}
+
+// Запрос на удаление категории по её идентификатору
+message DeleteCategoryByIdRequest {
+  uint32 id = 1; // Идентификатор категории
+}
+
+// Ответ на запрос удаления категории по её идентификатору
+message DeleteCategoryByIdResponse {
+  string message = 1; // Сообщение об успешном удалении категории
+}
+
+// Информация для создания нового бренда
+message BrandInfo {
+  string name = 1; // Наименование бренда
+  string slug = 2; // Уникальный идентификатор бренда
+  string description = 3; // Описание бренда
+}
+
+// Запрос на создание нового бренда
+message CreateBrandRequest {
+  BrandInfo info = 1; // Информация для создания нового бренда
+}
+
+// Ответ на запрос создания нового бренда
+message CreateBrandResponse {
+  uint32 id = 1; // Идентификатор созданного бренда
+}
+
+// Запрос на обновление информации о бренде
+message UpdateBrandRequest {
+  uint32 id = 1; // Идентификатор бренда
+  BrandInfo info = 2; // Информация для обновления бренда
+}
+
+// Ответ на запрос обновления информации о бренде
+message UpdateBrandResponse {
+  string message = 1; // Сообщение об успешном обновлении информации о бренде
+}
+
+// Запрос на получение списка всех брендов
+message GetAllBrandsRequest {}
+
+// Ответ на запрос получения списка всех брендов
+message GetAllBrandsResponse {
+  repeated Brand brands = 1; // Список брендов
+}
+
+// Запрос на получение бренда по его идентификатору
+message GetBrandByIdRequest {
+  uint32 id = 1; // Идентификатор бренда
+}
+
+// Ответ на запрос получения бренда по его идентификатору
+message GetBrandByIdResponse {
+  Brand brand = 1; // Бренд
+}
+
+// Запрос на получение бренда по его slug
+message GetBrandBySlugRequest {
+  string slug = 1; // Slug бренда
+}
+
+// Ответ на запрос получения бренда по его slug
+message GetBrandBySlugResponse {
+  Brand brand = 1; // Бренд
+}
+
+// Запрос на получение товара от определенного бренда
+message GetAllBrandProductsRequest {
+  uint32 id = 1; // Идентификатор бренда
+}
+
+// Ответ на запрос получения товара определенного бренда
+message GetAllBrandProductsResponse {
+  repeated Product products = 1; // Товары
+}
+
+// Запрос на удаление бренда по его идентификатору
+message DeleteBrandByIdRequest {
+  uint32 id = 1; // Идентификатор бренда
+}
+
+// Ответ на запрос удаления бренда по его идентификатору
+message DeleteBrandByIdResponse {
+  string message = 1; // Сообщение об успешном удалении бренда
+}
+
+// Информация о категории
+message CategoryInfo {
+  string name = 1; // Наименование категории
+  string slug = 2; // Уникальный идентификатор категории
+}
+
+// Категория
+message Category {
+  uint32 id = 1; // Идентификатор категории
+  CategoryInfo info = 2; // Информация о категории
+  google.protobuf.Timestamp created_at = 3; // Время создания категории
+  google.protobuf.Timestamp updated_at = 4; // Время последнего обновления категории
+}
+
+// Бренд
+message Brand {
+  uint32 id = 1; // Идентификатор бренда
+  BrandInfo info = 2; // Информация о бренде
+  google.protobuf.Timestamp created_at = 3; // Время создания бренда
+  google.protobuf.Timestamp updated_at = 4; // Время последнего обновления бренда
+}

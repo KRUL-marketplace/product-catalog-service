@@ -1,0 +1,1084 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Krul API",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "ProductCatalogService"
+    }
+  ],
+  "host": "localhost:8080",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/brand": {
+      "post": {
+        "summary": "Создание нового бренда",
+        "operationId": "ProductCatalogService_CreateBrand",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productCreateBrandResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productCreateBrandRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/brand/by-slug/{slug}": {
+      "get": {
+        "summary": "Получение бренда по его slug",
+        "operationId": "ProductCatalogService_GetBrandBySlug",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productGetBrandBySlugResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "description": "Slug бренда",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/brand/{id}": {
+      "get": {
+        "summary": "Получение бренда по его идентификатору",
+        "operationId": "ProductCatalogService_GetBrandById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productGetBrandByIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Идентификатор бренда",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      },
+      "delete": {
+        "summary": "Удаление бренда по его идентификатору",
+        "operationId": "ProductCatalogService_DeleteBrandById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productDeleteBrandByIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Идентификатор бренда",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      },
+      "put": {
+        "summary": "Обновление существующего бренда",
+        "operationId": "ProductCatalogService_UpdateBrand",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productUpdateBrandResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Идентификатор бренда",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "info": {
+                  "$ref": "#/definitions/productBrandInfo",
+                  "title": "Информация для обновления бренда"
+                }
+              },
+              "title": "Запрос на обновление информации о бренде"
+            }
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/brands": {
+      "get": {
+        "summary": "Получение списка всех брендов",
+        "operationId": "ProductCatalogService_GetAllBrands",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productGetAllBrandsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/categories": {
+      "get": {
+        "summary": "Получение списка всех категорий",
+        "operationId": "ProductCatalogService_GetAllCategories",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productGetAllCategoriesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/category": {
+      "post": {
+        "summary": "Создание новой категории",
+        "operationId": "ProductCatalogService_CreateCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productCreateCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productCreateCategoryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/category/by-slug/{slug}": {
+      "get": {
+        "summary": "Получение категории по её slug",
+        "operationId": "ProductCatalogService_GetCategoryBySlug",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productGetCategoryBySlugResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "description": "Slug категории",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/category/{id}": {
+      "get": {
+        "summary": "Получение категории по её идентификатору",
+        "operationId": "ProductCatalogService_GetCategoryById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productGetCategoryByIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Идентификатор категории",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      },
+      "delete": {
+        "summary": "Удаление категории по её идентификатору",
+        "operationId": "ProductCatalogService_DeleteCategoryById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productDeleteCategoryByIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Идентификатор категории",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      },
+      "put": {
+        "summary": "Обновление существующей категории",
+        "operationId": "ProductCatalogService_UpdateCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productUpdateCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Идентификатор категории",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "info": {
+                  "$ref": "#/definitions/productCategoryInfo",
+                  "title": "Информация для обновления категории"
+                }
+              },
+              "title": "Запрос на обновление информации о категории"
+            }
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/product": {
+      "post": {
+        "summary": "Создание нового продукта",
+        "operationId": "ProductCatalogService_CreateProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productCreateProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productCreateProductRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/product/by-slug/{slug}": {
+      "get": {
+        "summary": "Получение продукта по его slug",
+        "operationId": "ProductCatalogService_GetProductBySlug",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productGetProductBySlugResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "description": "Slug продукта",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/product/{id}": {
+      "get": {
+        "summary": "Получение продукта по его идентификатору",
+        "operationId": "ProductCatalogService_GetProductById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productGetProductByIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Идентификатор продукта",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      },
+      "delete": {
+        "summary": "Удаление продукта по его идентификатору",
+        "operationId": "ProductCatalogService_DeleteProductById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productDeleteProductByIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Идентификатор продукта",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      },
+      "put": {
+        "summary": "Обновление существующего продукта",
+        "operationId": "ProductCatalogService_UpdateProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productCreateProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Идентификатор продукта",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "info": {
+                  "$ref": "#/definitions/productCreateProductInfo",
+                  "title": "Информация для обновления продукта"
+                }
+              },
+              "title": "Запрос на обновление информации о продукте"
+            }
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/products": {
+      "get": {
+        "summary": "Получение списка всех продуктов",
+        "operationId": "ProductCatalogService_GetAllProducts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productGetAllProductsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    },
+    "/v1/products/brand/{id}": {
+      "get": {
+        "summary": "Получения товара определенного бренда",
+        "operationId": "ProductCatalogService_GetAllBrandProducts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productGetAllBrandProductsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Идентификатор бренда",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ProductCatalogService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "productBrand": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Идентификатор бренда"
+        },
+        "info": {
+          "$ref": "#/definitions/productBrandInfo",
+          "title": "Информация о бренде"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Время создания бренда"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Время последнего обновления бренда"
+        }
+      },
+      "title": "Бренд"
+    },
+    "productBrandInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Наименование бренда"
+        },
+        "slug": {
+          "type": "string",
+          "title": "Уникальный идентификатор бренда"
+        },
+        "description": {
+          "type": "string",
+          "title": "Описание бренда"
+        }
+      },
+      "title": "Информация для создания нового бренда"
+    },
+    "productCategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Идентификатор категории"
+        },
+        "info": {
+          "$ref": "#/definitions/productCategoryInfo",
+          "title": "Информация о категории"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Время создания категории"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Время последнего обновления категории"
+        }
+      },
+      "title": "Категория"
+    },
+    "productCategoryInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Наименование категории"
+        },
+        "slug": {
+          "type": "string",
+          "title": "Уникальный идентификатор категории"
+        }
+      },
+      "title": "Информация о категории"
+    },
+    "productCreateBrandRequest": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/productBrandInfo",
+          "title": "Информация для создания нового бренда"
+        }
+      },
+      "title": "Запрос на создание нового бренда"
+    },
+    "productCreateBrandResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Идентификатор созданного бренда"
+        }
+      },
+      "title": "Ответ на запрос создания нового бренда"
+    },
+    "productCreateCategoryRequest": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/productCategoryInfo",
+          "title": "Информация для создания новой категории"
+        }
+      },
+      "title": "Информация для создания новой категории"
+    },
+    "productCreateCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Идентификатор созданной категории"
+        }
+      },
+      "title": "Ответ на запрос создания новой категории"
+    },
+    "productCreateProductInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Наименование продукта"
+        },
+        "slug": {
+          "type": "string",
+          "title": "Уникальный идентификатор продукта"
+        },
+        "description": {
+          "type": "string",
+          "title": "Описание продукта"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Цена продукта"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "title": "Список идентификаторов категорий, к которым относится продукт"
+        },
+        "brandId": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Идентификатор бренда продукта"
+        }
+      },
+      "title": "Информация для создания нового продукта"
+    },
+    "productCreateProductRequest": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "$ref": "#/definitions/productCreateProductInfo",
+          "title": "Информация для создания нового продукта"
+        }
+      },
+      "title": "Запрос на создание нового продукта"
+    },
+    "productCreateProductResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Идентификатор созданного продукта"
+        }
+      },
+      "title": "Ответ на запрос создания нового продукта"
+    },
+    "productDeleteBrandByIdResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "title": "Сообщение об успешном удалении бренда"
+        }
+      },
+      "title": "Ответ на запрос удаления бренда по его идентификатору"
+    },
+    "productDeleteCategoryByIdResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "title": "Сообщение об успешном удалении категории"
+        }
+      },
+      "title": "Ответ на запрос удаления категории по её идентификатору"
+    },
+    "productDeleteProductByIdResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "title": "Сообщение об успешном удалении продукта"
+        }
+      },
+      "title": "Ответ на запрос удаления продукта по его идентификатору"
+    },
+    "productGetAllBrandProductsResponse": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productProduct"
+          },
+          "title": "Товары"
+        }
+      },
+      "title": "Ответ на запрос получения товара определенного бренда"
+    },
+    "productGetAllBrandsResponse": {
+      "type": "object",
+      "properties": {
+        "brands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productBrand"
+          },
+          "title": "Список брендов"
+        }
+      },
+      "title": "Ответ на запрос получения списка всех брендов"
+    },
+    "productGetAllCategoriesResponse": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productCategory"
+          },
+          "title": "Список категорий"
+        }
+      },
+      "title": "Ответ на запрос получения списка всех категорий"
+    },
+    "productGetAllProductsResponse": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productProduct"
+          },
+          "title": "Список продуктов"
+        }
+      },
+      "title": "Ответ на запрос получения списка всех продуктов"
+    },
+    "productGetBrandByIdResponse": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "$ref": "#/definitions/productBrand",
+          "title": "Бренд"
+        }
+      },
+      "title": "Ответ на запрос получения бренда по его идентификатору"
+    },
+    "productGetBrandBySlugResponse": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "$ref": "#/definitions/productBrand",
+          "title": "Бренд"
+        }
+      },
+      "title": "Ответ на запрос получения бренда по его slug"
+    },
+    "productGetCategoryByIdResponse": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/productCategory",
+          "title": "Категория"
+        }
+      },
+      "title": "Ответ на запрос получения категории по её идентификатору"
+    },
+    "productGetCategoryBySlugResponse": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/productCategory",
+          "title": "Категория"
+        }
+      },
+      "title": "Ответ на запрос получения категории по её slug"
+    },
+    "productGetProductByIdResponse": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "$ref": "#/definitions/productProduct",
+          "title": "Продукт"
+        }
+      },
+      "title": "Ответ на запрос получения продукта по его идентификатору"
+    },
+    "productGetProductBySlugResponse": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "$ref": "#/definitions/productProduct",
+          "title": "Продукт"
+        }
+      },
+      "title": "Ответ на запрос получения продукта по его slug"
+    },
+    "productProduct": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Идентификатор продукта"
+        },
+        "info": {
+          "$ref": "#/definitions/productProductInfo",
+          "title": "Информация о продукте"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Время создания продукта"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Время последнего обновления продукта"
+        }
+      },
+      "title": "Продукт"
+    },
+    "productProductInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Наименование продукта"
+        },
+        "slug": {
+          "type": "string",
+          "title": "Уникальный идентификатор продукта"
+        },
+        "description": {
+          "type": "string",
+          "title": "Описание продукта"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Цена продукта"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productCategory"
+          },
+          "title": "Список категорий, к которым относится продукт"
+        },
+        "brand": {
+          "$ref": "#/definitions/productBrand",
+          "title": "Бренд продукта"
+        }
+      },
+      "title": "Информация о продукте"
+    },
+    "productUpdateBrandResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "title": "Сообщение об успешном обновлении информации о бренде"
+        }
+      },
+      "title": "Ответ на запрос обновления информации о бренде"
+    },
+    "productUpdateCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "title": "Сообщение об успешном обновлении информации о категории"
+        }
+      },
+      "title": "Ответ на запрос обновления информации о категории"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
