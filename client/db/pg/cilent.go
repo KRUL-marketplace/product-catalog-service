@@ -2,9 +2,9 @@ package pg
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/pkg/errors"
-	"product-catalog-service/client/db"
 )
 
 type pgClient struct {

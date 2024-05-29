@@ -2,9 +2,9 @@ package api
 
 import (
 	"context"
+	converter "github.com/KRUL-marketplace/product-catalog-service/internal/converter/category"
+	desc "github.com/KRUL-marketplace/product-catalog-service/pkg/product-catalog-service"
 	"log"
-	converter "product-catalog-service/internal/converter/category"
-	desc "product-catalog-service/pkg/product-catalog-service"
 )
 
 func (i *Implementation) GetAllCategories(ctx context.Context, _ *desc.GetAllCategoriesRequest) (*desc.GetAllCategoriesResponse, error) {

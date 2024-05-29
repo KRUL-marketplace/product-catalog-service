@@ -2,8 +2,8 @@ package product
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
 	sq "github.com/Masterminds/squirrel"
-	"product-catalog-service/client/db"
 )
 
 func (r *repo) DeleteById(ctx context.Context, id string) error {

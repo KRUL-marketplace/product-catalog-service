@@ -1,10 +1,10 @@
 package api
 
 import (
-	brandService "product-catalog-service/internal/service/brand"
-	categoryService "product-catalog-service/internal/service/category"
-	productService "product-catalog-service/internal/service/product"
-	desc "product-catalog-service/pkg/product-catalog-service"
+	brandService "github.com/KRUL-marketplace/product-catalog-service/internal/service/brand"
+	categoryService "github.com/KRUL-marketplace/product-catalog-service/internal/service/category"
+	productService "github.com/KRUL-marketplace/product-catalog-service/internal/service/product"
+	desc "github.com/KRUL-marketplace/product-catalog-service/pkg/product-catalog-service"
 )
 
 type Implementation struct {

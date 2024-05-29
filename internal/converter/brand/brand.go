@@ -1,9 +1,9 @@
 package brand
 
 import (
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand/model"
+	desc "github.com/KRUL-marketplace/product-catalog-service/pkg/product-catalog-service"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"product-catalog-service/internal/repository/brand/model"
-	desc "product-catalog-service/pkg/product-catalog-service"
 )
 
 func ToBrandInfoFromDesc(info *desc.BrandInfo) *model.BrandInfo {

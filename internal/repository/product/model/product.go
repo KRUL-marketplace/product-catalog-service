@@ -2,8 +2,8 @@ package model
 
 import (
 	"database/sql"
-	brandModel "product-catalog-service/internal/repository/brand/model"
-	categoryModel "product-catalog-service/internal/repository/category/model"
+	brandModel "github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand/model"
+	categoryModel "github.com/KRUL-marketplace/product-catalog-service/internal/repository/category/model"
 
 	"time"
 )

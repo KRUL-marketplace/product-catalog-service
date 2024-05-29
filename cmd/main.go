@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/app"
 	"log"
-	"product-catalog-service/internal/app"
 )
 
 func main() {

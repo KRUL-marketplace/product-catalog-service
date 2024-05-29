@@ -2,9 +2,9 @@ package brand
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
 	sq "github.com/Masterminds/squirrel"
 	"github.com/pkg/errors"
-	"product-catalog-service/client/db"
 )
 
 func (r *repo) DeleteById(ctx context.Context, id uint32) error {

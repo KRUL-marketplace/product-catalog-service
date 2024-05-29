@@ -2,8 +2,8 @@ package brand
 
 import (
 	"context"
-	"product-catalog-service/client/db"
-	"product-catalog-service/internal/repository/brand/model"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand/model"
 )
 
 const (

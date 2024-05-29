@@ -2,9 +2,9 @@ package brand
 
 import (
 	"context"
-	"product-catalog-service/client/db"
-	repository "product-catalog-service/internal/repository/brand"
-	"product-catalog-service/internal/repository/brand/model"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	repository "github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand/model"
 )
 
 type brandService struct {

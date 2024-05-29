@@ -2,10 +2,10 @@ package product
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/product/model"
 	sq "github.com/Masterminds/squirrel"
 	"log"
-	"product-catalog-service/client/db"
-	"product-catalog-service/internal/repository/product/model"
 )
 
 func (r *repo) Create(ctx context.Context, product *model.CreateProduct) (string, error) {

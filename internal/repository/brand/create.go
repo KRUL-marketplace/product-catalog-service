@@ -2,9 +2,9 @@ package brand
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand/model"
 	sq "github.com/Masterminds/squirrel"
-	"product-catalog-service/client/db"
-	"product-catalog-service/internal/repository/brand/model"
 )
 
 func (r *repo) Create(ctx context.Context, info *model.BrandInfo) (uint32, error) {

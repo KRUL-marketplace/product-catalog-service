@@ -2,7 +2,7 @@ package brand
 
 import (
 	"context"
-	"product-catalog-service/internal/repository/brand/model"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand/model"
 )
 
 func (s *brandService) GetAll(ctx context.Context) ([]*model.Brand, error) {

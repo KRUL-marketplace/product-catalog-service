@@ -2,8 +2,8 @@ package api
 
 import (
 	"context"
+	desc "github.com/KRUL-marketplace/product-catalog-service/pkg/product-catalog-service"
 	"log"
-	desc "product-catalog-service/pkg/product-catalog-service"
 )
 
 func (i *Implementation) DeleteCategoryById(ctx context.Context, req *desc.DeleteCategoryByIdRequest) (*desc.DeleteCategoryByIdResponse, error) {

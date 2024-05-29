@@ -2,10 +2,10 @@ package transaction
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db/pg"
 	"github.com/jackc/pgx/v4"
 	"github.com/pkg/errors"
-	"product-catalog-service/client/db"
-	"product-catalog-service/client/db/pg"
 )
 
 type manager struct {

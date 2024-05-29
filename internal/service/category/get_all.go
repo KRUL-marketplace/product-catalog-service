@@ -2,7 +2,7 @@ package category
 
 import (
 	"context"
-	"product-catalog-service/internal/repository/category/model"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/category/model"
 )
 
 func (s *categoryService) GetAll(ctx context.Context) ([]*model.Category, error) {

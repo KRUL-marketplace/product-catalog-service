@@ -2,8 +2,8 @@ package category
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/category/model"
 	"github.com/gosimple/slug"
-	"product-catalog-service/internal/repository/category/model"
 )
 
 func (s *categoryService) Update(ctx context.Context, id uint32, info *model.CategoryInfo) error {

@@ -2,9 +2,9 @@ package product
 
 import (
 	"context"
-	"product-catalog-service/client/db"
-	repository "product-catalog-service/internal/repository/product"
-	"product-catalog-service/internal/repository/product/model"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	repository "github.com/KRUL-marketplace/product-catalog-service/internal/repository/product"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/product/model"
 )
 
 type productService struct {

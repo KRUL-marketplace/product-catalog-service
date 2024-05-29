@@ -3,13 +3,13 @@ package pg
 import (
 	"context"
 	"fmt"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db/prettier"
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/jackc/pgconn"
 	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"log"
-	"product-catalog-service/client/db"
-	"product-catalog-service/client/db/prettier"
 )
 
 type key string

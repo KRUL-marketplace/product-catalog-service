@@ -2,6 +2,9 @@ package app
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/config"
+	desc "github.com/KRUL-marketplace/product-catalog-service/pkg/product-catalog-service"
+	_ "github.com/KRUL-marketplace/product-catalog-service/statik"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/rakyll/statik/fs"
 	"github.com/rs/cors"
@@ -12,9 +15,6 @@ import (
 	"log"
 	"net"
 	"net/http"
-	"product-catalog-service/internal/config"
-	desc "product-catalog-service/pkg/product-catalog-service"
-	_ "product-catalog-service/statik"
 	"sync"
 )
 

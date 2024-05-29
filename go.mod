@@ -1,4 +1,4 @@
-module product-catalog-service
+module github.com/KRUL-marketplace/product-catalog-service
 
 go 1.22.2
 

@@ -1,9 +1,9 @@
 package category
 
 import (
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/category/model"
+	desc "github.com/KRUL-marketplace/product-catalog-service/pkg/product-catalog-service"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"product-catalog-service/internal/repository/category/model"
-	desc "product-catalog-service/pkg/product-catalog-service"
 )
 
 func ToCategoryInfoFromDesc(info *desc.CategoryInfo) *model.CategoryInfo {

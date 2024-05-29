@@ -2,8 +2,8 @@ package brand
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand/model"
 	"github.com/gosimple/slug"
-	"product-catalog-service/internal/repository/brand/model"
 )
 
 func (s *brandService) Update(ctx context.Context, id uint32, info *model.BrandInfo) error {

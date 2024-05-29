@@ -2,9 +2,9 @@ package api
 
 import (
 	"context"
+	converter "github.com/KRUL-marketplace/product-catalog-service/internal/converter/brand"
+	desc "github.com/KRUL-marketplace/product-catalog-service/pkg/product-catalog-service"
 	"log"
-	converter "product-catalog-service/internal/converter/brand"
-	desc "product-catalog-service/pkg/product-catalog-service"
 )
 
 func (i *Implementation) GetBrandById(ctx context.Context, req *desc.GetBrandByIdRequest) (*desc.GetBrandByIdResponse, error) {

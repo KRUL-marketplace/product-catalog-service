@@ -2,18 +2,18 @@ package app
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db/pg"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db/transaction"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/api"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/config"
+	brandRepository "github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand"
+	categoryRepository "github.com/KRUL-marketplace/product-catalog-service/internal/repository/category"
+	productRepository "github.com/KRUL-marketplace/product-catalog-service/internal/repository/product"
+	brandService "github.com/KRUL-marketplace/product-catalog-service/internal/service/brand"
+	categoryService "github.com/KRUL-marketplace/product-catalog-service/internal/service/category"
+	productService "github.com/KRUL-marketplace/product-catalog-service/internal/service/product"
 	"log"
-	"product-catalog-service/client/db"
-	"product-catalog-service/client/db/pg"
-	"product-catalog-service/client/db/transaction"
-	"product-catalog-service/internal/api"
-	"product-catalog-service/internal/config"
-	brandRepository "product-catalog-service/internal/repository/brand"
-	categoryRepository "product-catalog-service/internal/repository/category"
-	productRepository "product-catalog-service/internal/repository/product"
-	brandService "product-catalog-service/internal/service/brand"
-	categoryService "product-catalog-service/internal/service/category"
-	productService "product-catalog-service/internal/service/product"
 )
 
 type serviceProvider struct {

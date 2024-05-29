@@ -3,11 +3,11 @@ package product
 import (
 	"context"
 	"database/sql"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	converter "github.com/KRUL-marketplace/product-catalog-service/internal/converter/product"
+	categoryModel "github.com/KRUL-marketplace/product-catalog-service/internal/repository/category/model"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/product/model"
 	sq "github.com/Masterminds/squirrel"
-	"product-catalog-service/client/db"
-	converter "product-catalog-service/internal/converter/product"
-	categoryModel "product-catalog-service/internal/repository/category/model"
-	"product-catalog-service/internal/repository/product/model"
 	"strconv"
 	"strings"
 )

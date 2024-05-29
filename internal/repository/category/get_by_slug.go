@@ -2,10 +2,10 @@ package category
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	converter "github.com/KRUL-marketplace/product-catalog-service/internal/converter/category"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/category/model"
 	sq "github.com/Masterminds/squirrel"
-	"product-catalog-service/client/db"
-	converter "product-catalog-service/internal/converter/category"
-	"product-catalog-service/internal/repository/category/model"
 )
 
 func (r *repo) GetBySlug(ctx context.Context, slug string) (*model.Category, error) {

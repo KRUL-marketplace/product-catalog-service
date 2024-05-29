@@ -2,10 +2,10 @@ package brand
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	converter "github.com/KRUL-marketplace/product-catalog-service/internal/converter/brand"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand/model"
 	sq "github.com/Masterminds/squirrel"
-	"product-catalog-service/client/db"
-	converter "product-catalog-service/internal/converter/brand"
-	"product-catalog-service/internal/repository/brand/model"
 )
 
 func (r *repo) GetById(ctx context.Context, id uint32) (*model.Brand, error) {

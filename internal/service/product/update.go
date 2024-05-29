@@ -2,8 +2,8 @@ package product
 
 import (
 	"context"
+	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/product/model"
 	"github.com/gosimple/slug"
-	"product-catalog-service/internal/repository/product/model"
 )
 
 func (s *productService) Update(ctx context.Context, id string, info *model.CreateProduct) (string, error) {
