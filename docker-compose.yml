@@ -3,6 +3,10 @@ version: '3.5'
 volumes:
   postgres_volume:
 
+networks:
+  test:
+    external: true
+
 services:
   postgres:
     hostname: postgres
@@ -14,7 +18,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - product-catalog-network
+      - test
 
   product-catalog-service:
     restart: always
@@ -26,7 +30,7 @@ services:
       - "${HTTP_PORT:-8080}:${HTTP_PORT:-8080}"
       - "${SWAGGER_PORT:-8090}:${SWAGGER_PORT:-8090}"
     networks:
-      - product-catalog-network
+      - test
 
   migrator:
     build:
@@ -36,7 +40,4 @@ services:
     env_file:
       - .env
     networks:
-      - product-catalog-network
-
-networks:
-  product-catalog-network:
+      - test

@@ -14,7 +14,7 @@ type productService struct {
 
 type ProductService interface {
 	Create(ctx context.Context, info *model.CreateProduct) (string, error)
-	GetById(ctx context.Context, id string) (*model.GetProduct, error)
+	GetById(ctx context.Context, id []string) (*[]model.GetProduct, error)
 	GetBySlug(ctx context.Context, slug string) (*model.GetProduct, error)
 	GetAll(ctx context.Context) ([]*model.GetProduct, error)
 	GetByBrand(ctx context.Context, brandId uint32) ([]*model.GetProduct, error)

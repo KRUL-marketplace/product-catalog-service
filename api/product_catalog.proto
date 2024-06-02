@@ -41,7 +41,7 @@ service ProductCatalogService {
   // Получение продукта по его идентификатору
   rpc GetProductById(GetProductByIdRequest) returns (GetProductByIdResponse) {
     option (google.api.http) = {
-      get: "/v1/product/{id}" // HTTP GET запрос на /v1/product/{id}
+      get: "/v1/product/{ids}" // HTTP GET запрос на /v1/product/{id}
     };
   }
   // Получение продукта по его slug
@@ -192,12 +192,12 @@ message UpdateProductRequest {
 
 // Запрос на получение продукта по его идентификатору
 message GetProductByIdRequest {
-  string id = 1; // Идентификатор продукта
+  repeated string ids = 1; // Идентификатор продукта
 }
 
 // Ответ на запрос получения продукта по его идентификатору
 message GetProductByIdResponse {
-  Product product = 1; // Продукт
+  repeated Product product = 1; // Продукты
 }
 
 // Запрос на получение продукта по его slug

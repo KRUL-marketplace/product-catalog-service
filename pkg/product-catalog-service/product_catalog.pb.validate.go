@@ -894,8 +894,6 @@ func (m *GetProductByIdRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
-
 	if len(errors) > 0 {
 		return GetProductByIdRequestMultiError(errors)
 	}
@@ -998,33 +996,38 @@ func (m *GetProductByIdResponse) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetProduct()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, GetProductByIdResponseValidationError{
-					field:  "Product",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
+	for idx, item := range m.GetProduct() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetProductByIdResponseValidationError{
+						field:  fmt.Sprintf("Product[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetProductByIdResponseValidationError{
+						field:  fmt.Sprintf("Product[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
 			}
-		case interface{ Validate() error }:
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				errors = append(errors, GetProductByIdResponseValidationError{
-					field:  "Product",
+				return GetProductByIdResponseValidationError{
+					field:  fmt.Sprintf("Product[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
-				})
+				}
 			}
 		}
-	} else if v, ok := interface{}(m.GetProduct()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return GetProductByIdResponseValidationError{
-				field:  "Product",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
+
 	}
 
 	if len(errors) > 0 {

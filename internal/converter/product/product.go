@@ -33,6 +33,26 @@ func ToProductFromService(product *model.GetProduct) *desc.Product {
 	}
 }
 
+func ToProductArrayFromService(products *[]model.GetProduct) []*desc.Product {
+	var resProducts []*desc.Product
+
+	for _, product := range *products {
+		var updatedAt *timestamppb.Timestamp
+		if product.UpdatedAt.Valid {
+			updatedAt = timestamppb.New(product.UpdatedAt.Time)
+		}
+
+		resProducts = append(resProducts, &desc.Product{
+			Id:        product.ID,
+			Info:      ToProductInfoFromService(product.Info),
+			CreatedAt: timestamppb.New(product.CreatedAt),
+			UpdatedAt: updatedAt,
+		})
+	}
+
+	return resProducts
+}
+
 func ToProductInfoFromService(info model.GetProductInfo) *desc.ProductInfo {
 	product := &desc.ProductInfo{
 		Name:        info.Name,

@@ -482,7 +482,7 @@
         ]
       }
     },
-    "/v1/product/{id}": {
+    "/v1/product/{ids}": {
       "get": {
         "summary": "Получение продукта по его идентификатору",
         "operationId": "ProductCatalogService_GetProductById",
@@ -502,17 +502,24 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "ids",
             "description": "Идентификатор продукта",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv",
+            "minItems": 1
           }
         ],
         "tags": [
           "ProductCatalogService"
         ]
-      },
+      }
+    },
+    "/v1/product/{id}": {
       "delete": {
         "summary": "Удаление продукта по его идентификатору",
         "operationId": "ProductCatalogService_DeleteProductById",
@@ -957,8 +964,12 @@
       "type": "object",
       "properties": {
         "product": {
-          "$ref": "#/definitions/productProduct",
-          "title": "Продукт"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productProduct"
+          },
+          "title": "Продукты"
         }
       },
       "title": "Ответ на запрос получения продукта по его идентификатору"

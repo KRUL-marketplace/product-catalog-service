@@ -22,6 +22,7 @@ const (
 type Repository interface {
 	Create(ctx context.Context, info *model.CreateProduct) (string, error)
 	GetByField(ctx context.Context, field string, value string) (*model.GetProduct, error)
+	GetById(ctx context.Context, ids []string) (*[]model.GetProduct, error)
 	GetAll(ctx context.Context) ([]*model.GetProduct, error)
 	GetByBrand(ctx context.Context, brandId uint32) ([]*model.GetProduct, error)
 	DeleteById(ctx context.Context, id string) error
