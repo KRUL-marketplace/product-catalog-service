@@ -23,6 +23,5 @@ go.work.sum
 
 .env
 vendor.protogen/
-statik/
 .idea/
 bin/
