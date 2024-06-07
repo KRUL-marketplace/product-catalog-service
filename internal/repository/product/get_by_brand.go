@@ -3,7 +3,7 @@ package product
 import (
 	"context"
 	"database/sql"
-	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	"github.com/KRUL-marketplace/common-libs/pkg/client/db"
 	catagory "github.com/KRUL-marketplace/product-catalog-service/internal/repository/category/model"
 	productModel "github.com/KRUL-marketplace/product-catalog-service/internal/repository/product/model"
 	sq "github.com/Masterminds/squirrel"

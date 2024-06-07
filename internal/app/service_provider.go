@@ -2,9 +2,10 @@ package app
 
 import (
 	"context"
-	"github.com/KRUL-marketplace/product-catalog-service/client/db"
-	"github.com/KRUL-marketplace/product-catalog-service/client/db/pg"
-	"github.com/KRUL-marketplace/product-catalog-service/client/db/transaction"
+	"github.com/KRUL-marketplace/common-libs/pkg/client/db"
+	"github.com/KRUL-marketplace/common-libs/pkg/client/db/pg"
+	"github.com/KRUL-marketplace/common-libs/pkg/client/db/transaction"
+	"github.com/KRUL-marketplace/common-libs/pkg/closer"
 	"github.com/KRUL-marketplace/product-catalog-service/internal/api"
 	"github.com/KRUL-marketplace/product-catalog-service/internal/config"
 	brandRepository "github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand"
@@ -170,6 +171,7 @@ func (s *serviceProvider) DBClient(ctx context.Context) db.Client {
 			log.Fatalf("ping error: %s", err.Error())
 		}
 
+		closer.Add(cl.Close)
 		s.dbClient = cl
 	}
 

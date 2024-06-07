@@ -2,7 +2,7 @@ package product
 
 import (
 	"context"
-	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	"github.com/KRUL-marketplace/common-libs/pkg/client/db"
 	sq "github.com/Masterminds/squirrel"
 )
 

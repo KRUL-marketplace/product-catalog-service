@@ -2,7 +2,7 @@ package category
 
 import (
 	"context"
-	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	"github.com/KRUL-marketplace/common-libs/pkg/client/db"
 	converter "github.com/KRUL-marketplace/product-catalog-service/internal/converter/category"
 	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/category/model"
 	sq "github.com/Masterminds/squirrel"
