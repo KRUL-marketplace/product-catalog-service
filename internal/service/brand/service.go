@@ -2,7 +2,7 @@ package brand
 
 import (
 	"context"
-	"github.com/KRUL-marketplace/product-catalog-service/client/db"
+	"github.com/KRUL-marketplace/common-libs/pkg/client/db"
 	repository "github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand"
 	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/brand/model"
 )
