@@ -57,7 +57,7 @@ get-deps:
 	go get -u github.com/lib/pq
 	go get -u github.com/google/uuid
 	go get -u github.com/rakyll/statik
-
+	go get -u github.com/KRUL-marketplace/common-libs
 
 generate:
 	mkdir -p pkg/swagger
