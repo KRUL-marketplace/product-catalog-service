@@ -810,6 +810,10 @@
           "type": "integer",
           "format": "int64",
           "title": "Идентификатор бренда продукта"
+        },
+        "gender": {
+          "type": "string",
+          "title": "Пол, к которому относится продукт (men, women, unisex)"
         }
       },
       "title": "Информация для создания нового продукта"
@@ -1039,6 +1043,10 @@
         "brand": {
           "$ref": "#/definitions/productBrand",
           "title": "Бренд продукта"
+        },
+        "gender": {
+          "type": "string",
+          "title": "Пол, к которому относится продукт (men, women, unisex)"
         }
       },
       "title": "Информация о продукте"

@@ -20,6 +20,7 @@ type GetProductInfo struct {
 	Slug        string `db:"slug"`
 	Description string `db:"description"`
 	Price       uint32 `db:"price"`
+	Gender      string `db:"gender"`
 	Categories  []categoryModel.Category
 	Brand       brandModel.Brand `db:""`
 }
@@ -29,6 +30,7 @@ type CreateProduct struct {
 	Slug        string
 	Description string
 	Price       uint32
+	Gender      string
 	Categories  []uint32
 	BrandId     uint32
 }

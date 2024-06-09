@@ -154,6 +154,7 @@ message ProductInfo {
   uint32 price = 4; // Цена продукта
   repeated Category categories = 5; // Список категорий, к которым относится продукт
   Brand brand = 6; // Бренд продукта
+  string gender = 7; // Пол, к которому относится продукт (men, women, unisex)
 }
 
 // Информация для создания нового продукта
@@ -164,6 +165,7 @@ message CreateProductInfo {
   uint32 price = 4; // Цена продукта
   repeated uint32 categories = 5; // Список идентификаторов категорий, к которым относится продукт
   uint32 brandId = 6; // Идентификатор бренда продукта
+  string gender = 7; // Пол, к которому относится продукт (men, women, unisex)
 }
 
 // Продукт
