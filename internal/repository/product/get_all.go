@@ -13,7 +13,8 @@ import (
 
 func (r *repo) GetAll(ctx context.Context) ([]*productModel.GetProduct, error) {
 	builder := sq.Select("p.id AS product_id", "p.name AS product_name", "p.slug AS product_slug",
-		"p.description AS product_description", "p.price AS product_price", "p.created_at AS product_created_at",
+		"p.description AS product_description", "p.price AS product_price",
+		"p.gender AS product_gender", "p.created_at AS product_created_at",
 		"p.updated_at AS product_updated_at",
 		"b.id AS brand_id", "b.name AS brand_name", "b.slug AS brand_slug", "b.description AS brand_description",
 		"b.created_at AS brand_created_at", "b.updated_at AS brand_updated_at",
@@ -23,7 +24,8 @@ func (r *repo) GetAll(ctx context.Context) ([]*productModel.GetProduct, error) {
 		LeftJoin("product_categories pc ON p.id = pc.product_id").
 		LeftJoin("categories c ON pc.category_id = c.id").
 		LeftJoin("brands b ON p.brand_id = b.id").
-		GroupBy("p.id, p.name, p.slug, p.description, p.price, p.created_at, p.updated_at, b.id, b.name, b.slug, b.description").
+		GroupBy("p.id, p.name, p.slug, p.description, p.price, p.gender, p.created_at, p.updated_at, " +
+			"b.id, b.name, b.slug, b.description").
 		PlaceholderFormat(sq.Dollar)
 
 	query, args, err := builder.ToSql()
@@ -51,7 +53,7 @@ func (r *repo) GetAll(ctx context.Context) ([]*productModel.GetProduct, error) {
 		var product productModel.GetProduct
 
 		err := rows.Scan(&product.ID, &product.Info.Name, &product.Info.Slug, &product.Info.Description, &product.Info.Price,
-			&product.CreatedAt, &product.UpdatedAt, &product.Info.Brand.ID,
+			&product.Info.Gender, &product.CreatedAt, &product.UpdatedAt, &product.Info.Brand.ID,
 			&product.Info.Brand.Info.Name, &product.Info.Brand.Info.Slug, &product.Info.Brand.Info.Description,
 			&product.Info.Brand.CreatedAt, &product.Info.Brand.UpdatedAt, &categoriesIds, &categories, &categorySlugs)
 

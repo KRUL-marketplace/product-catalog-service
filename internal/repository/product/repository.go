@@ -14,6 +14,7 @@ const (
 	slugColumn        = "slug"
 	descriptionColumn = "description"
 	priceColumn       = "price"
+	genderColumn      = "gender"
 	brandIdColumn     = "brand_id"
 	createdAtColumn   = "created_at"
 	updatedAtColumn   = "updated_at"

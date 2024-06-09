@@ -5,14 +5,13 @@ import (
 	"github.com/KRUL-marketplace/common-libs/pkg/client/db"
 	"github.com/KRUL-marketplace/product-catalog-service/internal/repository/product/model"
 	sq "github.com/Masterminds/squirrel"
-	"log"
 )
 
 func (r *repo) Create(ctx context.Context, product *model.CreateProduct) (string, error) {
 	builder := sq.Insert(tableName).
 		PlaceholderFormat(sq.Dollar).
-		Columns(nameColumn, slugColumn, descriptionColumn, priceColumn, brandIdColumn).
-		Values(product.Name, product.Slug, product.Description, product.Price, product.BrandId).
+		Columns(nameColumn, slugColumn, descriptionColumn, priceColumn, genderColumn, brandIdColumn).
+		Values(product.Name, product.Slug, product.Description, product.Price, product.Gender, product.BrandId).
 		Suffix("RETURNING " + idColumn)
 
 	query, args, err := builder.ToSql()
@@ -46,9 +45,7 @@ func (r *repo) createProductCategory(ctx context.Context, productID string, cate
 		PlaceholderFormat(sq.Dollar).
 		Columns("product_id", "category_id").
 		Values(productID, categoryID)
-
-	log.Printf("PRDOUCT ID %s CATEGORY ID %d", productID, categoryID)
-
+	
 	// Build the SQL query
 	query, args, err := builder.ToSql()
 	if err != nil {

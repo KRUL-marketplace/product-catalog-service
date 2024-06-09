@@ -22,6 +22,7 @@ func (r *repo) Update(ctx context.Context, id string, info *model.CreateProduct)
 		Set(descriptionColumn, info.Description).
 		Set(slugColumn, info.Slug).
 		Set(priceColumn, info.Price).
+		Set(genderColumn, info.Gender).
 		Set(brandIdColumn, info.BrandId).
 		Set(updatedAtColumn, time.Now())
 
