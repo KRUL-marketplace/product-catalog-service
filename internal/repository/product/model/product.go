@@ -34,3 +34,10 @@ type CreateProduct struct {
 	Categories  []uint32
 	BrandId     uint32
 }
+
+type FilterProduct struct {
+	BrandIds           []uint32
+	CategoryIds        []uint32
+	MinPrice, MaxPrice uint32
+	Gender             string
+}

@@ -45,7 +45,7 @@ func (r *repo) createProductCategory(ctx context.Context, productID string, cate
 		PlaceholderFormat(sq.Dollar).
 		Columns("product_id", "category_id").
 		Values(productID, categoryID)
-	
+
 	// Build the SQL query
 	query, args, err := builder.ToSql()
 	if err != nil {

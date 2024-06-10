@@ -104,3 +104,13 @@ func ToProductInfoFromRepo(info model.GetProductInfo) model.GetProductInfo {
 		Brand:       info.Brand,
 	}
 }
+
+func ToProductFiltersFromDesc(filters *desc.GetAllProductsRequest) *model.FilterProduct {
+	return &model.FilterProduct{
+		BrandIds:    filters.BrandIds,
+		CategoryIds: filters.CategoryIds,
+		MinPrice:    filters.MinPrice,
+		MaxPrice:    filters.MaxPrice,
+		Gender:      filters.Gender,
+	}
+}

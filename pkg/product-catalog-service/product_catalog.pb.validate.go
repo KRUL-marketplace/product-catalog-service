@@ -1371,6 +1371,12 @@ func (m *GetAllProductsRequest) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for MinPrice
+
+	// no validation rules for MaxPrice
+
+	// no validation rules for Gender
+
 	if len(errors) > 0 {
 		return GetAllProductsRequestMultiError(errors)
 	}
