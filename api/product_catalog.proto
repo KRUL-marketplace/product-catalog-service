@@ -213,7 +213,13 @@ message GetProductBySlugResponse {
 }
 
 // Запрос на получение списка всех продуктов
-message GetAllProductsRequest {}
+message GetAllProductsRequest {
+  repeated uint32 brand_ids = 1; // Идентификаторы брендов для фильтрации
+  repeated uint32 category_ids = 2; // Идентификаторы категорий для фильтрации
+  uint32 min_price = 3; // Минимальная цена для фильтрации
+  uint32 max_price = 4; // Максимальная цена для фильтрации
+  string gender = 5; // Пол для фильтрации (men, women, unisex)
+}
 
 // Ответ на запрос получения списка всех продуктов
 message GetAllProductsResponse {

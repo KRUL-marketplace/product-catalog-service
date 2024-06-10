@@ -7,8 +7,8 @@ import (
 	"log"
 )
 
-func (i *Implementation) GetAllProducts(ctx context.Context, _ *desc.GetAllProductsRequest) (*desc.GetAllProductsResponse, error) {
-	products, err := i.productService.GetAll(ctx)
+func (i *Implementation) GetAllProducts(ctx context.Context, filters *desc.GetAllProductsRequest) (*desc.GetAllProductsResponse, error) {
+	products, err := i.productService.GetAll(ctx, converter.ToProductFiltersFromDesc(filters))
 	if err != nil {
 		return nil, err
 	}

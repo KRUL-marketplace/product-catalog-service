@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-func (r *repo) GetAll(ctx context.Context) ([]*productModel.GetProduct, error) {
+func (r *repo) GetAll(ctx context.Context, filter *productModel.FilterProduct) ([]*productModel.GetProduct, error) {
 	builder := sq.Select("p.id AS product_id", "p.name AS product_name", "p.slug AS product_slug",
 		"p.description AS product_description", "p.price AS product_price",
 		"p.gender AS product_gender", "p.created_at AS product_created_at",
@@ -27,6 +27,22 @@ func (r *repo) GetAll(ctx context.Context) ([]*productModel.GetProduct, error) {
 		GroupBy("p.id, p.name, p.slug, p.description, p.price, p.gender, p.created_at, p.updated_at, " +
 			"b.id, b.name, b.slug, b.description").
 		PlaceholderFormat(sq.Dollar)
+
+	if len(filter.BrandIds) > 0 {
+		builder = builder.Where(sq.Eq{"b.id": filter.BrandIds})
+	}
+	if len(filter.CategoryIds) > 0 {
+		builder = builder.Where(sq.Eq{"c.id": filter.CategoryIds})
+	}
+	if filter.MinPrice > 0 {
+		builder = builder.Where(sq.GtOrEq{"p.price": filter.MinPrice})
+	}
+	if filter.MaxPrice > 0 {
+		builder = builder.Where(sq.LtOrEq{"p.price": filter.MaxPrice})
+	}
+	if filter.Gender != "" {
+		builder = builder.Where(sq.Eq{"p.gender": filter.Gender})
+	}
 
 	query, args, err := builder.ToSql()
 	if err != nil {

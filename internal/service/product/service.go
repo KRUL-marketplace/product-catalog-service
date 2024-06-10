@@ -16,7 +16,7 @@ type ProductService interface {
 	Create(ctx context.Context, info *model.CreateProduct) (string, error)
 	GetById(ctx context.Context, id []string) (*[]model.GetProduct, error)
 	GetBySlug(ctx context.Context, slug string) (*model.GetProduct, error)
-	GetAll(ctx context.Context) ([]*model.GetProduct, error)
+	GetAll(ctx context.Context, filter *model.FilterProduct) ([]*model.GetProduct, error)
 	GetByBrand(ctx context.Context, brandId uint32) ([]*model.GetProduct, error)
 	Update(ctx context.Context, id string, info *model.CreateProduct) (string, error)
 	DeleteById(ctx context.Context, id string) error
