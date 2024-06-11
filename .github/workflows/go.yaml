@@ -25,5 +25,6 @@ jobs:
 
       - name: Build and push Docker images
         run: |
+          echo "${{ secrets.ENV_DEVELOPMENT }}" > .env
           docker-compose build
           docker-compose push
