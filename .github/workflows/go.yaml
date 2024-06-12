@@ -52,7 +52,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd ~            
+            cd ~
+            echo "${{ secrets.ENV_DEVELOPMENT }}" > .env
             echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin ${{ secrets.REGISTRY_URL }}
             docker-compose pull
             docker-compose up -d
