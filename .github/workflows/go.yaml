@@ -67,5 +67,6 @@ jobs:
             docker network create product_catalog_network || true
             docker-compose down
             docker-compose rm -f
+            docker rmi -f $(docker images -aq)
             docker-compose pull
             docker-compose up -d
