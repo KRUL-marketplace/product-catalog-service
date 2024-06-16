@@ -10,9 +10,10 @@ networks:
 services:
   postgres:
     hostname: postgres
+    user: postgres
     image: postgres:14-alpine
     env_file:
-      - .env
+      - local.env
     healthcheck:
       test: ["CMD", "pg_isready"]
     ports:
@@ -22,7 +23,9 @@ services:
 
   product-catalog-service:
     restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     depends_on:
       - postgres
     ports:
@@ -38,6 +41,6 @@ services:
       dockerfile: migration.Dockerfile
     restart: on-failure
     env_file:
-      - .env
+      - local.env
     networks:
       - product_catalog_network
