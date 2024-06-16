@@ -18,8 +18,8 @@ fi
 
 # Создание .env файла на основе .env.example
 if [ ! -f .env ]; then
-  if [ -f .env.example ]; then
-    cp .env.example .env
+  if [ -f local.env ]; then
+    cp local.env .env
     echo ".env файл создан на основе .env.example"
   else
     echo "Файл .env.example не найден. Создайте .env файл вручную."
