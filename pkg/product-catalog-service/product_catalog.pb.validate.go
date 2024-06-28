@@ -130,6 +130,8 @@ func (m *ProductInfo) validate(all bool) error {
 
 	// no validation rules for Gender
 
+	// no validation rules for Quantity
+
 	if len(errors) > 0 {
 		return ProductInfoMultiError(errors)
 	}
@@ -240,6 +242,8 @@ func (m *CreateProductInfo) validate(all bool) error {
 	// no validation rules for BrandId
 
 	// no validation rules for Gender
+
+	// no validation rules for Quantity
 
 	if len(errors) > 0 {
 		return CreateProductInfoMultiError(errors)

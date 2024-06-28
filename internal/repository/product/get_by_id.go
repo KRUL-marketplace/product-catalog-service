@@ -17,6 +17,7 @@ func (r *repo) GetById(ctx context.Context, ids []string) (*[]model.GetProduct, 
 		"p.slug AS product_slug",
 		"p.description AS product_description",
 		"p.price AS product_price",
+		"p.quantity AS product_quantity",
 		"p.gender AS product_gender",
 		"p.created_at AS product_created_at",
 		"p.updated_at AS product_updated_at",
@@ -30,7 +31,7 @@ func (r *repo) GetById(ctx context.Context, ids []string) (*[]model.GetProduct, 
 		LeftJoin("categories c ON pc.category_id = c.id").
 		LeftJoin("brands b ON p.brand_id = b.id").
 		Where(sq.Eq{"p.id": ids}).
-		GroupBy("p.id, p.name, p.description, p.price, p.gender, b.id, b.name, b.slug, b.description")
+		GroupBy("p.id, p.name, p.description, p.price,  p.quantity, p.gender, b.id, b.name, b.slug, b.description")
 
 	query, args, err := builder.PlaceholderFormat(sq.Dollar).ToSql()
 	if err != nil {
@@ -54,7 +55,7 @@ func (r *repo) GetById(ctx context.Context, ids []string) (*[]model.GetProduct, 
 		var categoriesIds, categoriesNames, categoriesSlugs sql.NullString
 
 		err := rows.Scan(&product.ID, &product.Info.Name, &product.Info.Slug, &product.Info.Description, &product.Info.Price,
-			&product.Info.Gender, &product.CreatedAt, &product.UpdatedAt,
+			&product.Info.Quantity, &product.Info.Gender, &product.CreatedAt, &product.UpdatedAt,
 			&product.Info.Brand.ID, &product.Info.Brand.Info.Name, &product.Info.Brand.Info.Slug,
 			&product.Info.Brand.Info.Description, &product.Info.Brand.CreatedAt, &product.Info.Brand.UpdatedAt,
 			&categoriesIds, &categoriesNames, &categoriesSlugs)
