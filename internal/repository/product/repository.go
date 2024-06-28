@@ -16,6 +16,7 @@ const (
 	priceColumn       = "price"
 	genderColumn      = "gender"
 	brandIdColumn     = "brand_id"
+	quantityColumn    = "quantity"
 	createdAtColumn   = "created_at"
 	updatedAtColumn   = "updated_at"
 )

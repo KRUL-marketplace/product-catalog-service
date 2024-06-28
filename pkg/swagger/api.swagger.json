@@ -863,6 +863,11 @@
         "gender": {
           "type": "string",
           "title": "Пол, к которому относится продукт (men, women, unisex)"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Количество товара на складе"
         }
       },
       "title": "Информация для создания нового продукта"
@@ -1096,6 +1101,11 @@
         "gender": {
           "type": "string",
           "title": "Пол, к которому относится продукт (men, women, unisex)"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Количество товара на складе"
         }
       },
       "title": "Информация о продукте"

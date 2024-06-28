@@ -18,6 +18,7 @@ func (r *repo) GetByField(ctx context.Context, field string, value string) (*mod
 		"p.slug AS product_slug",
 		"p.description AS product_description",
 		"p.price AS product_price",
+		"p.quantity AS product_quantity",
 		"p.gender AS product_gender",
 		"p.created_at AS product_created_at",
 		"p.updated_at AS product_updated_at",
@@ -31,7 +32,7 @@ func (r *repo) GetByField(ctx context.Context, field string, value string) (*mod
 		LeftJoin("categories c ON pc.category_id = c.id").
 		LeftJoin("brands b ON p.brand_id = b.id").
 		Where(sq.Eq{"p." + field: value}).
-		GroupBy("p.id, p.name, p.description, p.price, p.gender, b.id, b.name, b.slug, b.description").
+		GroupBy("p.id, p.name, p.description, p.price, p.quantity, p.gender, b.id, b.name, b.slug, b.description").
 		Limit(1)
 
 	query, args, err := builder.PlaceholderFormat(sq.Dollar).ToSql()
@@ -51,7 +52,7 @@ func (r *repo) GetByField(ctx context.Context, field string, value string) (*mod
 	var product model.GetProduct
 	err = r.db.DB().QueryRowContext(ctx, q, args...).
 		Scan(&product.ID, &product.Info.Name, &product.Info.Slug, &product.Info.Description, &product.Info.Price,
-			&product.Info.Gender, &product.CreatedAt, &product.UpdatedAt,
+			&product.Info.Price, &product.Info.Gender, &product.CreatedAt, &product.UpdatedAt,
 			&product.Info.Brand.ID, &product.Info.Brand.Info.Name, &product.Info.Brand.Info.Slug,
 			&product.Info.Brand.Info.Description, &product.Info.Brand.CreatedAt, &product.Info.Brand.UpdatedAt,
 			&categoriesIds, &categoriesNames, &categoriesSlugs)

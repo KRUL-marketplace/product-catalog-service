@@ -13,7 +13,7 @@ import (
 
 func (r *repo) GetByBrand(ctx context.Context, brandId uint32) ([]*productModel.GetProduct, error) {
 	builder := sq.Select("p.id AS product_id", "p.name AS product_name", "p.slug AS product_slug",
-		"p.description AS product_description", "p.price AS product_price",
+		"p.description AS product_description", "p.price AS product_price", "p.quantity AS product_quantity",
 		"p.gender AS product_gender", "p.created_at AS product_created_at",
 		"p.updated_at AS product_updated_at",
 		"b.id AS brand_id", "b.name AS brand_name", "b.slug AS brand_slug", "b.description AS brand_description",
@@ -24,7 +24,7 @@ func (r *repo) GetByBrand(ctx context.Context, brandId uint32) ([]*productModel.
 		LeftJoin("product_categories pc ON p.id = pc.product_id").
 		LeftJoin("categories c ON pc.category_id = c.id").
 		LeftJoin("brands b ON p.brand_id = b.id").
-		GroupBy("p.id, p.name, p.slug, p.description, p.price, p.gender, p.created_at, p.updated_at," +
+		GroupBy("p.id, p.name, p.slug, p.description, p.price, p.quantity, p.gender, p.created_at, p.updated_at," +
 			" b.id, b.name, b.slug, b.description").
 		PlaceholderFormat(sq.Dollar).
 		Where(sq.Eq{"b.id": brandId})
@@ -54,7 +54,7 @@ func (r *repo) GetByBrand(ctx context.Context, brandId uint32) ([]*productModel.
 		var product productModel.GetProduct
 
 		err := rows.Scan(&product.ID, &product.Info.Name, &product.Info.Slug, &product.Info.Description, &product.Info.Price,
-			&product.Info.Gender, &product.CreatedAt, &product.UpdatedAt, &product.Info.Brand.ID,
+			&product.Info.Quantity, &product.Info.Gender, &product.CreatedAt, &product.UpdatedAt, &product.Info.Brand.ID,
 			&product.Info.Brand.Info.Name, &product.Info.Brand.Info.Slug, &product.Info.Brand.Info.Description,
 			&product.Info.Brand.CreatedAt, &product.Info.Brand.UpdatedAt, &categoriesIds, &categories, &categorySlugs)
 

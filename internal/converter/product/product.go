@@ -13,6 +13,7 @@ func ToProductInfoFromDesc(info *desc.CreateProductInfo) *model.CreateProduct {
 		Description: info.Description,
 		Price:       info.Price,
 		Gender:      info.Gender,
+		Quantity:    info.Quantity,
 		Categories:  info.Categories,
 		BrandId:     info.BrandId,
 	}
@@ -60,6 +61,7 @@ func ToProductInfoFromService(info model.GetProductInfo) *desc.ProductInfo {
 		Slug:        info.Slug,
 		Description: info.Description,
 		Price:       info.Price,
+		Quantity:    info.Quantity,
 		Gender:      info.Gender,
 		Brand: &desc.Brand{
 			Id: info.Brand.ID,
@@ -100,6 +102,7 @@ func ToProductInfoFromRepo(info model.GetProductInfo) model.GetProductInfo {
 		Description: info.Description,
 		Price:       info.Price,
 		Gender:      info.Gender,
+		Quantity:    info.Quantity,
 		Categories:  info.Categories,
 		Brand:       info.Brand,
 	}

@@ -24,6 +24,7 @@ func (r *repo) Update(ctx context.Context, id string, info *model.CreateProduct)
 		Set(priceColumn, info.Price).
 		Set(genderColumn, info.Gender).
 		Set(brandIdColumn, info.BrandId).
+		Set(quantityColumn, info.Quantity).
 		Set(updatedAtColumn, time.Now())
 
 	query, args, err := builder.PlaceholderFormat(sq.Dollar).ToSql()
